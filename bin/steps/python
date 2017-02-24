@@ -1,4 +1,5 @@
 PYTHON_VERSION=$(cat runtime.txt)
+PYTHON_VERSION=$($ROOT_DIR/
 
 # Install Python.
 if [ -f .cloudfoundry/python-version ]; then
