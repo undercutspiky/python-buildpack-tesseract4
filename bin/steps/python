@@ -11,7 +11,7 @@ if [ -f .cloudfoundry/python-version ]; then
   fi
 fi
 
-if [ ! $STACK = $CACHED_PYTHON_STACK ]; then
+if [ ! $CF_STACK = $CACHED_PYTHON_STACK ]; then
   rm -fr .cloudfoundry/python .cloudfoundry/python-stack .cloudfoundry/vendor
   unset SKIP_INSTALL
 fi
@@ -24,7 +24,7 @@ if [ ! "$SKIP_INSTALL" ]; then
   mkdir -p .cloudfoundry/python
 
   exit_code=0
-  url="https://lang-python.s3.amazonaws.com/$STACK/runtimes/$PYTHON_VERSION.tar.gz"
+  url="https://lang-python.s3.amazonaws.com/$CF_STACK/runtimes/$PYTHON_VERSION.tar.gz"
 
   filtered_url=$($ROOT_DIR/compile-extensions/bin/download_dependency $url /tmp) || exit_code=$?
   if [ $exit_code -ne 0 ]; then
@@ -40,7 +40,7 @@ if [ ! "$SKIP_INSTALL" ]; then
 
   # Record for future reference.
   echo $PYTHON_VERSION > .cloudfoundry/python-version
-  echo $STACK > .cloudfoundry/python-stack
+  echo $CF_STACK > .cloudfoundry/python-stack
   FRESH_PYTHON=true
 
   hash -r

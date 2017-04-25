@@ -87,7 +87,7 @@ export PATH=$PATH:$ROOT_DIR/vendor/pip-pop
 # Support Anvil Build_IDs
 [ ! "$SLUG_ID" ] && SLUG_ID="defaultslug"
 [ ! "$REQUEST_ID" ] && REQUEST_ID=$SLUG_ID
-[ ! "$STACK" ] && STACK=$DEFAULT_PYTHON_STACK
+[ ! "$CF_STACK" ] && CF_STACK=$DEFAULT_PYTHON_STACK
 
 # Sanitizing environment variables.
 unset GIT_DIR PYTHONHOME PYTHONPATH
@@ -145,7 +145,7 @@ fi
 if [ -f $CACHE_DIR/.cloudfoundry/python-stack ]; then
   CACHED_PYTHON_STACK=$(cat $CACHE_DIR/.cloudfoundry/python-stack)
 else
-  CACHED_PYTHON_STACK=$STACK
+  CACHED_PYTHON_STACK=$CF_STACK
 fi
 
 # If no runtime given, assume default version.
