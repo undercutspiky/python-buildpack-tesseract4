@@ -122,11 +122,6 @@ fi
 # Experimental pre_compile hook.
 source $BIN_DIR/steps/hooks/pre_compile
 
-# If no requirements.txt file given, assume `setup.py develop` is intended.
-if [ ! -f requirements.txt ]; then
-  echo "-e ." > requirements.txt
-fi
-
 
 # Sticky runtimes.
 if [ -f $CACHE_DIR/.cloudfoundry/python-version ]; then
@@ -181,6 +176,11 @@ source $BIN_DIR/steps/setuptools
 
 # Pipenv support.
 source $BIN_DIR/steps/pipenv
+
+# If no requirements.txt file given, assume `setup.py develop` is intended.
+if [ ! -f requirements.txt ]; then
+  echo "-e ." > requirements.txt
+fi
 
 # Uninstall removed dependencies with Pip.
 source $BIN_DIR/steps/pip-uninstall

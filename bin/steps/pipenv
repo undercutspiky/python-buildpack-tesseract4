@@ -1,6 +1,6 @@
 # Pipenv support (Generate requriements.txt with pipenv).
-if [[ -f Pipfile ]]; then
-    if [[ ! -f requirements.txt ]]; then
+if [[ -f $BUILD_DIR/Pipfile ]]; then
+    if [[ ! -f $BUILD_DIR/requirements.txt ]]; then
         puts-step "Generating 'requirements.txt' with pipenv"
 
         /app/.cloudfoundry/python/bin/pip install pipenv --find-links=file://$BUILDPACK_PATH/vendor &> /dev/null
