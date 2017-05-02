@@ -227,6 +227,7 @@ set +e
 find .cloudfoundry/python/lib-python/*/site-packages/  -name "*.pth" -print0 2> /dev/null | xargs -r -0 -n 1 sed -i -e "s#$(pwd)#/app#" &> /dev/null
 set -e
 
+# Copy from build dir to cache (Using hard links for performance and lower disk usage)
 mkdir -p $CACHE_DIR/.cloudfoundry
 cp -Rl .cloudfoundry/python $CACHE_DIR/.cloudfoundry/
 cp -Rl .cloudfoundry/python-version $CACHE_DIR/.cloudfoundry/
