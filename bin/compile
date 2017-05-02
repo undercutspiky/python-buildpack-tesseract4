@@ -149,14 +149,14 @@ fi
 mkdir -p $CACHE_DIR
 
 # Restore old artifacts from the cache.
+# (Move cache dirs to build dir (will copy back after build))
 mkdir -p .cloudfoundry
-
-cp -R $CACHE_DIR/.cloudfoundry/python .cloudfoundry/ &> /dev/null || true
-cp -R $CACHE_DIR/.cloudfoundry/python-stack .cloudfoundry/ &> /dev/null || true
-cp -R $CACHE_DIR/.cloudfoundry/python-version .cloudfoundry/ &> /dev/null || true
-cp -R $CACHE_DIR/.cloudfoundry/vendor .cloudfoundry/ &> /dev/null || true
+mv $CACHE_DIR/.cloudfoundry/python .cloudfoundry/ &> /dev/null || true
+mv $CACHE_DIR/.cloudfoundry/python-stack .cloudfoundry/ &> /dev/null || true
+mv $CACHE_DIR/.cloudfoundry/python-version .cloudfoundry/ &> /dev/null || true
+mv $CACHE_DIR/.cloudfoundry/vendor .cloudfoundry/ &> /dev/null || true
 if [[ -d $CACHE_DIR/.cloudfoundry/src ]]; then
-	cp -R $CACHE_DIR/.cloudfoundry/src .cloudfoundry/ &> /dev/null || true
+	mv $CACHE_DIR/.cloudfoundry/src .cloudfoundry/ &> /dev/null || true
 fi
 
 mkdir -p $(dirname $PROFILE_PATH)
@@ -227,20 +227,13 @@ set +e
 find .cloudfoundry/python/lib-python/*/site-packages/  -name "*.pth" -print0 2> /dev/null | xargs -r -0 -n 1 sed -i -e "s#$(pwd)#/app#" &> /dev/null
 set -e
 
-# Store new artifacts in cache.
-rm -rf $CACHE_DIR/.cloudfoundry/python
-rm -rf $CACHE_DIR/.cloudfoundry/python-version
-rm -rf $CACHE_DIR/.cloudfoundry/python-stack
-rm -rf $CACHE_DIR/.cloudfoundry/vendor
-rm -rf $CACHE_DIR/.cloudfoundry/src
-
 mkdir -p $CACHE_DIR/.cloudfoundry
-cp -R .cloudfoundry/python $CACHE_DIR/.cloudfoundry/
-cp -R .cloudfoundry/python-version $CACHE_DIR/.cloudfoundry/
-cp -R .cloudfoundry/python-stack $CACHE_DIR/.cloudfoundry/ &> /dev/null || true
-cp -R .cloudfoundry/vendor $CACHE_DIR/.cloudfoundry/ &> /dev/null || true
+cp -Rl .cloudfoundry/python $CACHE_DIR/.cloudfoundry/
+cp -Rl .cloudfoundry/python-version $CACHE_DIR/.cloudfoundry/
+cp -Rl .cloudfoundry/python-stack $CACHE_DIR/.cloudfoundry/ &> /dev/null || true
+cp -Rl .cloudfoundry/vendor $CACHE_DIR/.cloudfoundry/ &> /dev/null || true
 if [[ -d .cloudfoundry/src ]]; then
-	cp -R .cloudfoundry/src $CACHE_DIR/.cloudfoundry/ &> /dev/null || true
+	cp -Rl .cloudfoundry/src $CACHE_DIR/.cloudfoundry/ &> /dev/null || true
 fi
 
 # Fin.
