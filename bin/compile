@@ -140,6 +140,9 @@ else
   CACHED_PYTHON_STACK=$STACK
 fi
 
+# Pipenv Python version support.
+$BIN_DIR/steps/pipenv-python-version.rb $BUILD_DIR
+
 # If no runtime given, assume default version.
 if [ ! -f runtime.txt ]; then
   echo $DEFAULT_PYTHON_VERSION > runtime.txt
@@ -175,6 +178,9 @@ source $BIN_DIR/steps/python
 
 # Sanity check for setuptools/distribute.
 source $BIN_DIR/steps/setuptools
+
+# Pipenv support.
+source $BIN_DIR/steps/pipenv
 
 # Uninstall removed dependencies with Pip.
 source $BIN_DIR/steps/pip-uninstall
