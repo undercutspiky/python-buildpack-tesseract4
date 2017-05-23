@@ -60,11 +60,6 @@ set-env-prepend LD_LIBRARY_PATH $DEPS_DIR/$DEPS_IDX/lib
 # Switch to the repo's context.
 cd $BUILD_DIR
 
-# If no requirements.txt file given, assume `setup.py develop` is intended.
-if [ ! -f requirements.txt ]; then
-  echo "-e ." > requirements.txt
-fi
-
 # Warn for lack of Procfile.
 if [[ ! -f Procfile ]]; then
   puts-warn 'Warning: Your application is missing a Procfile. This file tells Cloud Foundry how to run your application.'
@@ -95,6 +90,11 @@ source $BIN_DIR/steps/python
 
 # Pipenv support.
 source $BIN_DIR/steps/pipenv
+
+# If no requirements.txt file given, assume `setup.py develop` is intended.
+if [ ! -f requirements.txt ]; then
+  echo "-e ." > requirements.txt
+fi
 
 source $BIN_DIR/steps/cryptography
 
