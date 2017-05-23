@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "22bf43a7b0561e5f8cb70772def55d56207cca6cde7befa0d118fc98f001feeb"
+            "sha256": "987f4f42e4100b135e2596d184253e568ee1c7e75557619d7482a13855e92859"
         },
         "requires": {
             "python_version": "3.6"
@@ -27,8 +27,8 @@
             "version": "==1.0"
         },
         "Werkzeug": {
-            "hash": "sha256:918322630c58fa52b89e14c45de3ad78514e18928dac726060bb89cd647f6b83",
-            "version": "==0.12.1"
+            "hash": "sha256:e8549c143af3ce6559699a01e26fa4174f4c591dbee0a499f3cd4c3781cdec3d",
+            "version": "==0.12.2"
         },
         "gunicorn": {
             "hash": "sha256:a5179cde922d2b4e045ee5b11e87323ee77d363ae40294fc8252f25d6a0eaf06",

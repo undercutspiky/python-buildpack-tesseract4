@@ -1,0 +1,19 @@
+if [[ -f $BUILD_DIR/Pipfile ]]; then
+    if [[ ! -f $BUILD_DIR/requirements.txt ]]; then
+        puts-step "Installing dependencies with pipenv"
+
+        if test -d $BUILD_DIR/vendor; then
+            (
+                export HTTP_PROXY=http://localhost:1234/
+                export HTTPS_PROXY=https://localhost:1234/
+                export PIP_FIND_LINKS="file://$BUILD_DIR/vendor"
+                export PIP_NO_INDEX="true"
+                pipenv install --system 2>&1
+                pipenv lock --requirements > $BUILD_DIR/requirements.txt
+            )
+        else
+            pipenv install --system 2>&1
+            pipenv lock --requirements > $BUILD_DIR/requirements.txt
+        fi
+    fi
+fi

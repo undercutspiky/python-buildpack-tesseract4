@@ -52,6 +52,13 @@ BUNDLE_GEMFILE=cf.Gemfile bundle exec buildpack-build
 
 More options can be found on Machete's [Github page.](https://github.com/cloudfoundry/machete)
 
+### Development Debugging
+
+```
+→ docker run -v $PWD:/bpdir -v $PWD/cf_spec/fixtures/flask_python_3_pipenv:/app2:ro -it cloudfoundry/cflinuxfs2 bash
+$ rm -rf /tmp/app3 /tmp/cache && cp -r /app2 /tmp/app3 && mkdir -p /tmp/cache && /bpdir/bin/compile /tmp/app3 /tmp/cache^C
+```
+
 ### Contributing
 
 Find our guidelines [here](./CONTRIBUTING.md).
