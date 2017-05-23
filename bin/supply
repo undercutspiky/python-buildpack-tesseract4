@@ -71,6 +71,9 @@ if [[ ! -f Procfile ]]; then
   puts-warn 'Learn more: https://docs.cloudfoundry.org/buildpacks/prod-server.html#procfile'
 fi
 
+# Pipenv Python version support.
+$BIN_DIR/steps/pipenv-python-version.rb $BUILD_DIR
+
 # Restore old artifacts from the cache.
 # (Move cache dirs to build dir (will copy back after build))
 mv $CACHE_DIR/python $DEPS_DIR/$DEPS_IDX/python &> /dev/null || true
@@ -89,6 +92,9 @@ source $BIN_DIR/steps/hooks/pre_compile
 
 # Install Python,.
 source $BIN_DIR/steps/python
+
+# Pipenv support.
+source $BIN_DIR/steps/pipenv
 
 source $BIN_DIR/steps/cryptography
 
