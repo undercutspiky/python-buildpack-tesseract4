@@ -8,7 +8,7 @@ pushd $DEPS_DIR/$DEPS_IDX/bin >/dev/null
 popd >/dev/null
 
 if [[ -f $BUILD_DIR/Pipfile ]] && [[ ! -f $BUILD_DIR/requirements.txt ]]; then
-    puts-step "Generating requirements.txt from Pipfile"
+    puts-step "Generating 'requirements.txt' with pipenv"
 
     if test -d $BUILD_DIR/vendor; then
         (
