@@ -89,11 +89,10 @@ source $BIN_DIR/steps/hooks/pre_compile
 source $BIN_DIR/steps/python
 
 # Pipenv support.
-source $BIN_DIR/steps/pipenv-supply
-source $BIN_DIR/steps/pipenv-finalize
+source $BIN_DIR/steps/pipenv
 
 # If no requirements.txt file given, assume `setup.py develop` is intended.
-if [ ! -f requirements.txt ] && [ ! -f Pipfile ]; then
+if [ ! -f requirements.txt ]; then
   echo "-e ." > requirements.txt
 fi
 

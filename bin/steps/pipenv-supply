@@ -1,6 +1,0 @@
-puts-step "Install pipenv"
-pip install pipenv --exists-action=w --no-index --find-links=$BUILDPACK_PATH/vendor &> /dev/null
-
-pushd $DEPS_DIR/$DEPS_IDX/bin >/dev/null
-  ln -sf ../python/bin/* .
-popd >/dev/null
