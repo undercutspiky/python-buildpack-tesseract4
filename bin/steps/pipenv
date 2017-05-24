@@ -1,7 +1,13 @@
-PIPENV_VERSION=4.0.1
+PIPENV_VERSION=$($BUILDPACK_PATH/compile-extensions/bin/default_version_for $BUILDPACK_PATH/manifest.yml pipenv)
 
 puts-step "Installing pipenv ($PIPENV_VERSION)"
-pip install pipenv --exists-action=w --no-index --find-links=$BUILDPACK_PATH/vendor &> /dev/null
+
+filtered_url=$($BUILDPACK_PATH/compile-extensions/bin/download_dependency_by_name pipenv $PIPENV_VERSION /tmp/pipenv.tgz)
+echo "Downloaded [$filtered_url]"
+
+mkdir -p /tmp/vendor-pipenv
+tar zxf /tmp/pipenv.tgz -C /tmp/vendor-pipenv &> /dev/null
+pip install pipenv --exists-action=w --no-index --find-links=/tmp/vendor-pipenv &> /dev/null
 
 pushd $DEPS_DIR/$DEPS_IDX/bin >/dev/null
   ln -sf ../python/bin/* .
