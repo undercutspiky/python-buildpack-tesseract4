@@ -35,6 +35,19 @@ describe 'Compile' do
       end
     end
 
+    context 'runtime.txt contains any number of preceeding or trailing \n or \r ' do
+
+      it 'fully specified line passes through' do
+        output = run("./bin/steps/libs/version.rb #{manifest} \n\n\r\rpython-2.7.12\n\n\r\r")
+        expect(output).to eq('python-2.7.12')
+      end
+
+      it 'finds latest of a line' do
+        output = run("./bin/steps/libs/version.rb #{manifest} \n\n\r\rpython-2.7.x\n\n\r\r")
+        expect(output).to eq('python-2.7.14')
+      end
+    end
+
     context 'runtime.txt contains just the version' do
       it 'fully specified line passes through' do
         output = run("./bin/steps/libs/version.rb #{manifest} 2.7.12")
