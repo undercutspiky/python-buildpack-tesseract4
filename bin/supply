@@ -97,6 +97,12 @@ source $BIN_DIR/steps/cryptography
 
 source $BIN_DIR/steps/pylibmc
 
+# cache everything
+cp -Rl $DEPS_DIR/$DEPS_IDX/python $CACHE_DIR/
+if [[ -d $DEPS_DIR/$DEPS_IDX/src ]]; then
+  cp -Rl $DEPS_DIR/$DEPS_IDX/src $CACHE_DIR/ &> /dev/null || true
+fi
+
 # Automatic configuration for Gunicorn's ForwardedAllowIPS setting.
 echo "export FORWARDED_ALLOW_IPS='*'" > $DEPS_DIR/$DEPS_IDX/profile.d/python.gunicorn.sh
 
