@@ -97,6 +97,9 @@ source $BIN_DIR/steps/cryptography
 
 source $BIN_DIR/steps/pylibmc
 
+# Make sure all Pip installed dependencies use #!/usr/bin/env python
+$BIN_DIR/steps/rewrite-shebang
+
 # cache everything
 cp -Rl $DEPS_DIR/$DEPS_IDX/python $CACHE_DIR/
 if [[ -d $DEPS_DIR/$DEPS_IDX/src ]]; then
