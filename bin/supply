@@ -68,7 +68,6 @@ fi
 
 # Restore old artifacts from the cache.
 # (Move cache dirs to build dir (will copy back after build))
-mv $CACHE_DIR/python $DEPS_DIR/$DEPS_IDX/python &> /dev/null || true
 if [[ -d $CACHE_DIR/src ]]; then
   mv $CACHE_DIR/src $DEPS_DIR/$DEPS_IDX/src &> /dev/null || true
 fi

@@ -73,7 +73,6 @@ find \$DEPS_DIR/$DEPS_IDX/python/lib-python/*/site-packages/  -name "*.pth" -pri
 EOF
 
 # cache everything
-cp -Rl $DEPS_DIR/$DEPS_IDX/python $CACHE_DIR/
 if [[ -d $DEPS_DIR/$DEPS_IDX/src ]]; then
   cp -Rl $DEPS_DIR/$DEPS_IDX/src $CACHE_DIR/ &> /dev/null || true
 fi
