@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+echo "----------------- CUSTOM BUILDPACK CODE -----------------"
+
 # Switch to the repo's context.
 mv $BUILDPACK_PATH/ghostscript-9.06.tar.gz /tmp/ghostscript-9.06.tar.gz
 cd /tmp
