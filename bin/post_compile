@@ -1,5 +1,4 @@
-#!/bin/bash
-set -euo pipefail
+#!/bin/bash -x
 
 echo "----------------- CUSTOM BUILDPACK CODE -----------------"
 
@@ -11,3 +10,5 @@ cd ghostscript-9.06
 ./configure
 make
 make install
+
+echo "----------------- END OF CUSTOM BUILDPACK CODE -----------------"
