@@ -4,4 +4,6 @@ if [ -f bin/post_compile ]; then
     echo "-----> Running post-compile hook"
     chmod +x bin/post_compile
     bin/post_compile
+else
+	echo "-----> File bin/post_compile not found"
 fi
