@@ -2,12 +2,14 @@
 
 echo "----------------- CUSTOM BUILDPACK CODE -----------------"
 
+mkdir -p $DEPS_DIR/$DEPS_IDX/gs
+
 # Switch to the repo's context.
 mv $BUILDPACK_PATH/ghostscript-9.06.tar.gz /tmp/ghostscript-9.06.tar.gz
 cd /tmp
 tar -xf ghostscript-9.06.tar.gz
 cd ghostscript-9.06
-./configure
+./configure --prefix=$DEPS_DIR/$DEPS_IDX/gs
 make
 make install
 
