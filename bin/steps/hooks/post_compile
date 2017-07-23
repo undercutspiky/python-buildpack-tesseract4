@@ -5,8 +5,6 @@ echo "----------------- CUSTOM BUILDPACK CODE -----------------"
 GS_DIR=$DEPS_DIR/$DEPS_IDX/gs
 mkdir -p $GS_DIR
 
-echo "Installation directory: "
-
 # Switch to the repo's context.
 mv $BUILDPACK_PATH/ghostscript-9.06.tar.gz /tmp/ghostscript-9.06.tar.gz
 cd /tmp
@@ -17,7 +15,6 @@ make
 make install
 pushd $DEPS_DIR/$DEPS_IDX/bin >/dev/null
 	echo "----------------- LINKING -----------------"
-	echo pwd
   	ln -sf ../gs/bin/gs .
 popd >/dev/null
 
