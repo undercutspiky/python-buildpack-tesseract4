@@ -24,7 +24,10 @@ mkdir -p $TESSERACT_DIR
 mv $BUILDPACK_PATH/tesseract/liblept.so.5.0.1 $TESSERACT_DIR
 mv $BUILDPACK_PATH/tesseract/libtesseract.so.3.0.5 $TESSERACT_DIR
 mv $BUILDPACK_PATH/tesseract/tesseract $TESSERACT_DIR
-#chmod -x $TESSERACT_DIR/tesseract
+
+mkdir -p $TESSERACT_DIR/tessdata
+mv $BUILDPACK_PATH/tesseract/tessdata/* $TESSERACT_DIR/tessdata
+export TESSDATA_PREFIX=$TESSERACT_DIR
 
 echo "----------------- LINKING -----------------"
 pushd $DEPS_DIR/$DEPS_IDX/bin >/dev/null	
