@@ -27,8 +27,8 @@ mv $BUILDPACK_PATH/tesseract/libtesseract.so.3 $TESSERACT_DIR
 mv $BUILDPACK_PATH/tesseract/tesseract $TESSERACT_DIR
 pushd $DEPS_DIR/$DEPS_IDX/bin >/dev/null
 	echo "----------------- LINKING -----------------"
-  	ln -sf $TESSERACT_DIR/* .
-  	ls -lha
+  	ln -sf ../tesseract/* .
+  	./tesseract --version
 popd >/dev/null
 
 
