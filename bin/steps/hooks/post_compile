@@ -20,12 +20,11 @@ echo "----------------- CUSTOM BUILDPACK CODE -----------------"
 
 TESSERACT_DIR=$DEPS_DIR/$DEPS_IDX/tesseract
 mkdir -p $TESSERACT_DIR
-echo $TESSERACT_DIR
 
 mv $BUILDPACK_PATH/tesseract/liblept.so.5.0.1 $TESSERACT_DIR
 mv $BUILDPACK_PATH/tesseract/libtesseract.so.3.0.5 $TESSERACT_DIR
 mv $BUILDPACK_PATH/tesseract/tesseract $TESSERACT_DIR
-chmod -x $TESSERACT_DIR/tesseract
+#chmod -x $TESSERACT_DIR/tesseract
 
 echo "----------------- LINKING -----------------"
 pushd $DEPS_DIR/$DEPS_IDX/bin >/dev/null	
@@ -42,7 +41,5 @@ pushd $DEPS_DIR/$DEPS_IDX/lib >/dev/null
     ln -s ../tesseract/libtesseract.so.3.0.5 libtesseract.so.3
 
 popd >/dev/null
-
-tesseract --version
 
 echo "----------------- END OF CUSTOM BUILDPACK CODE -----------------"
