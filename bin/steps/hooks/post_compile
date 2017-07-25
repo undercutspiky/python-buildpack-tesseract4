@@ -2,20 +2,32 @@
 
 echo "----------------- CUSTOM BUILDPACK CODE -----------------"
 
-GS_DIR=$DEPS_DIR/$DEPS_IDX/gs
-mkdir -p $GS_DIR
+#GS_DIR=$DEPS_DIR/$DEPS_IDX/gs
+#mkdir -p $GS_DIR
 
 # Switch to the repo's context.
-mv $BUILDPACK_PATH/ghostscript-9.06.tar.gz /tmp/ghostscript-9.06.tar.gz
-cd /tmp
-tar -xf ghostscript-9.06.tar.gz
-cd ghostscript-9.06
-./configure --prefix=$GS_DIR --silent
-make
-make install
+#mv $BUILDPACK_PATH/ghostscript-9.06.tar.gz /tmp/ghostscript-9.06.tar.gz
+#cd /tmp
+#tar -xf ghostscript-9.06.tar.gz
+#cd ghostscript-9.06
+#./configure --prefix=$GS_DIR --silent
+#make
+#make install
+#pushd $DEPS_DIR/$DEPS_IDX/bin >/dev/null#
+#	echo "----------------- LINKING -----------------"
+#  	ln -sf ../gs/bin/gs .
+#popd >/dev/null
+
+TESSERACT_DIR=$DEPS_DIR/$DEPS_IDX/tesseract
+mkdir -p $TESSERACT_DIR
+
+mv $BUILDPACK_PATH/tesseract/liblept.so.5 $TESSERACT_DIR
+mv $BUILDPACK_PATH/tesseract/libtesseract.so.3 $TESSERACT_DIR
+mv $BUILDPACK_PATH/tesseract/tesseract $TESSERACT_DIR
 pushd $DEPS_DIR/$DEPS_IDX/bin >/dev/null
 	echo "----------------- LINKING -----------------"
-  	ln -sf ../gs/bin/gs .
+  	ln -sf $BUILDPACK_PATH/tesseract/* .
 popd >/dev/null
+
 
 echo "----------------- END OF CUSTOM BUILDPACK CODE -----------------"
