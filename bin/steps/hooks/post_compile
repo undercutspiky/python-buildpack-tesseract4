@@ -43,6 +43,6 @@ pushd $DEPS_DIR/$DEPS_IDX/lib >/dev/null
 
 popd >/dev/null
 
-./tesseract --version
+tesseract --version
 
 echo "----------------- END OF CUSTOM BUILDPACK CODE -----------------"
