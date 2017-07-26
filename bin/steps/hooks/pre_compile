@@ -25,10 +25,13 @@ mv $BUILDPACK_PATH/tesseract/liblept.so.5.0.1 $TESSERACT_DIR
 mv $BUILDPACK_PATH/tesseract/libtesseract.so.3.0.5 $TESSERACT_DIR
 mv $BUILDPACK_PATH/tesseract/tesseract $TESSERACT_DIR
 
-mkdir -p $TESSERACT_DIR/tessdata
-mv $BUILDPACK_PATH/tesseract/tessdata/* $TESSERACT_DIR/tessdata
-export TESSDATA_PREFIX=$TESSERACT_DIR
-echo $TESSDATA_PREFIX > $DEPS_DIR/$DEPS_IDX/env/TESSDATA_PREFIX
+#mkdir -p $TESSERACT_DIR/tessdata
+#mv $BUILDPACK_PATH/tesseract/tessdata/* $TESSERACT_DIR/tessdata
+#export TESSDATA_PREFIX=$TESSERACT_DIR
+#echo $TESSDATA_PREFIX > $DEPS_DIR/$DEPS_IDX/env/TESSDATA_PREFIX
+
+mkdir /usr/local/share/tessdata/
+mv $BUILDPACK_PATH/tesseract/tessdata/* /usr/local/share/tessdata/
 
 echo "----------------- LINKING -----------------"
 pushd $DEPS_DIR/$DEPS_IDX/bin >/dev/null	

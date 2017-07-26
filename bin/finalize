@@ -63,7 +63,6 @@ $BIN_DIR/steps/nltk
 # Django collectstatic support.
 $BIN_DIR/steps/collectstatic
 
-echo "----------------- post_compile -----------------"
 # Experimental post_compile hook.
 source $BIN_DIR/steps/hooks/post_compile
 
