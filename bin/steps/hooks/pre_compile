@@ -1,7 +1,49 @@
 #!/usr/bin/env bash
 
-if [ -f bin/pre_compile ]; then
-    echo "-----> Running pre-compile hook"
-    chmod +x bin/pre_compile
-    bin/pre_compile
-fi
+echo "----------------- CUSTOM BUILDPACK CODE -----------------"
+
+#GS_DIR=$DEPS_DIR/$DEPS_IDX/gs
+#mkdir -p $GS_DIR
+
+# Switch to the repo's context.
+#mv $BUILDPACK_PATH/ghostscript-9.06.tar.gz /tmp/ghostscript-9.06.tar.gz
+#cd /tmp
+#tar -xf ghostscript-9.06.tar.gz
+#cd ghostscript-9.06
+#./configure --prefix=$GS_DIR --silent
+#make
+#make install
+#pushd $DEPS_DIR/$DEPS_IDX/bin >/dev/null#
+#	echo "----------------- LINKING -----------------"
+#  	ln -sf ../gs/bin/gs .
+#popd >/dev/null
+
+TESSERACT_DIR=$DEPS_DIR/$DEPS_IDX/tesseract
+mkdir -p $TESSERACT_DIR
+
+mv $BUILDPACK_PATH/tesseract/liblept.so.5.0.1 $TESSERACT_DIR
+mv $BUILDPACK_PATH/tesseract/libtesseract.so.3.0.5 $TESSERACT_DIR
+mv $BUILDPACK_PATH/tesseract/tesseract $TESSERACT_DIR
+
+mkdir -p $TESSERACT_DIR/tessdata
+mv $BUILDPACK_PATH/tesseract/tessdata/* $TESSERACT_DIR/tessdata
+export TESSDATA_PREFIX=$TESSERACT_DIR
+echo $TESSDATA_PREFIX > $DEPS_DIR/$DEPS_IDX/env/TESSDATA_PREFIX
+
+echo "----------------- LINKING -----------------"
+pushd $DEPS_DIR/$DEPS_IDX/bin >/dev/null	
+  	ln -sf ../tesseract/tesseract .
+popd >/dev/null
+
+pushd $DEPS_DIR/$DEPS_IDX/lib >/dev/null
+    ln -s ../tesseract/liblept.so.5.0.1 liblept.so.5.0.1
+    ln -s ../tesseract/liblept.so.5.0.1 liblept.so
+    ln -s ../tesseract/liblept.so.5.0.1 liblept.so.5
+
+    ln -s ../tesseract/libtesseract.so.3.0.5 libtesseract.so.3.0.5
+    ln -s ../tesseract/libtesseract.so.3.0.5 libtesseract.so
+    ln -s ../tesseract/libtesseract.so.3.0.5 libtesseract.so.3
+
+popd >/dev/null
+
+echo "----------------- END OF CUSTOM BUILDPACK CODE -----------------"
