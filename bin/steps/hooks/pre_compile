@@ -30,7 +30,7 @@ mv $BUILDPACK_PATH/tesseract/tessdata/* $TESSERACT_DIR/tessdata
 #export TESSDATA_PREFIX=$TESSERACT_DIR
 #echo $TESSDATA_PREFIX > $DEPS_DIR/$DEPS_IDX/env/TESSDATA_PREFIX
 
-append_profile_d TESSDATA_PREFIX "\$DEPS_DIR/$DEPS_IDX/python"
+append_profile_d TESSDATA_PREFIX "\$DEPS_DIR/$DEPS_IDX/tesseract"
 echo $DEPS_DIR/$DEPS_IDX/tessdata > $DEPS_DIR/$DEPS_IDX/env/TESSDATA_PREFIX
 
 echo "----------------- LINKING -----------------"
