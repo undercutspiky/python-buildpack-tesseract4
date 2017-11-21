@@ -21,9 +21,13 @@ echo "----------------- CUSTOM BUILDPACK CODE -----------------"
 TESSERACT_DIR=$DEPS_DIR/$DEPS_IDX/tesseract
 mkdir -p $TESSERACT_DIR
 
-mv $BUILDPACK_PATH/tesseract/liblept.so.5.0.1 $TESSERACT_DIR
-mv $BUILDPACK_PATH/tesseract/libtesseract.so.3.0.5 $TESSERACT_DIR
 mv $BUILDPACK_PATH/tesseract/tesseract $TESSERACT_DIR
+mv $BUILDPACK_PATH/tesseract/liblept.a $TESSERACT_DIR
+mv $BUILDPACK_PATH/tesseract/liblept.la $TESSERACT_DIR
+mv $BUILDPACK_PATH/tesseract/liblept.so.5.0.1 $TESSERACT_DIR
+mv $BUILDPACK_PATH/tesseract/libtesseract.a $TESSERACT_DIR
+mv $BUILDPACK_PATH/tesseract/libtesseract.la $TESSERACT_DIR
+mv $BUILDPACK_PATH/tesseract/libtesseract.so.4.0.0 $TESSERACT_DIR
 
 mkdir -p $TESSERACT_DIR/tessdata
 mv $BUILDPACK_PATH/tesseract/tessdata/* $TESSERACT_DIR/tessdata
@@ -43,9 +47,14 @@ pushd $DEPS_DIR/$DEPS_IDX/lib >/dev/null
     ln -s ../tesseract/liblept.so.5.0.1 liblept.so
     ln -s ../tesseract/liblept.so.5.0.1 liblept.so.5
 
-    ln -s ../tesseract/libtesseract.so.3.0.5 libtesseract.so.3.0.5
-    ln -s ../tesseract/libtesseract.so.3.0.5 libtesseract.so
-    ln -s ../tesseract/libtesseract.so.3.0.5 libtesseract.so.3
+    ln -s ../tesseract/libtesseract.so.4.0.0 libtesseract.so.4.0.0
+    ln -s ../tesseract/libtesseract.so.4.0.0 libtesseract.so
+    ln -s ../tesseract/libtesseract.so.4.0.0 libtesseract.so.4
+
+    ln -s ../tesseract/liblept.a liblept.a
+    ln -s ../tesseract/liblept.la liblept.la
+    ln -s ../tesseract/libtesseract.a libtesseract.a
+    ln -s ../tesseract/libtesseract.la libtesseract.la
 
 popd >/dev/null
 
